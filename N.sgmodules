@@ -1,0 +1,7 @@
+#!name= notability
+#!desc= notability解锁
+[MITM]
+hostname = %APPEND% notability.com
+
+[Script]
+Notability=type=http-response,pattern=^https://notability.com/subscriptions,requires-body=1,max-size=0,script-content=let obj = JSON.parse($response.body);obj = {"data":{"processAppleReceipt":{"__typename":"SubscriptionResult","error":0,"subscription":{"__typename":"AppStoreSubscription","status":"active","originalPurchaseDate":"2021-11-09T03:14:18.000Z","originalTransactionId":"710000869822929","expirationDate":"2099-1-31T03:14:17.000Z","productId":"com.gingerlabs.Notability.premium_subscription","tier":"premium","refundedDate":null,"refundedReason":null,"user":null}}}};$done({body: JSON.stringify(obj)});,script-update-interval=0
