@@ -12,7 +12,7 @@ if(plus.test($request.url)) {
             "refundedDate": null,
             "refundedReason": null,
             "isInBillingRetryPeriod": false,
-            "expirationDate": "2999-01-02T00:00:00.000Z",
+            "expirationDate": "2900-01-02T00:00:00.000Z",
             "gracePeriodExpiresAt": null,
             "overDeviceLimit": false,
             "expirationIntent": null,
