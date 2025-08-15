@@ -1,5 +1,5 @@
-#!name= notability
-#!desc= notability解锁至2999
+#!name= Notability
+#!desc= 解锁至2999年
 [MITM]
 hostname = %APPEND% notability.com
 
