@@ -4,4 +4,34 @@
 hostname = %APPEND% notability.com
 
 [Script]
-Notability=type=http-response,pattern=^https://notability.com/subscriptions,requires-body=1,max-size=0,script-content=let obj = JSON.parse($response.body);obj = {"data":{"processAppleReceipt":{"__typename":"SubscriptionResult","error":0,"subscription":{"__typename":"AppStoreSubscription","status":"active","originalPurchaseDate":"2021-11-09T03:14:18.000Z","originalTransactionId":"710000869822929","expirationDate":"2999-12-31T03:14:17.000Z","productId":"com.gingerlabs.Notability.premium_subscription","tier":"premium","refundedDate":null,"refundedReason":null,"user":null}}}};$done({body: JSON.stringify(obj)});,script-update-interval=0
+Notability=type=http-response,pattern=^https://notability.com/subscriptions,requires-body=1,max-size=0,script-content=const SCRIPT_NAME = 'Notability';
+
+const plus = /^https?:\/\/notability\.com\/(global|subscriptions)/;
+
+if(plus.test($request.url)) {
+    let obj = JSON.parse($response.body);
+    obj.data = {
+        "processAppleReceipt": {
+          "error": 0,
+          "subscription": {
+            "productId": "com.gingerlabs.Notability.premium_subscription",
+            "originalTransactionId": "570001184068302",
+            "tier": "premium",
+            "refundedDate": null,
+            "refundedReason": null,
+            "isInBillingRetryPeriod": false,
+            "expirationDate": "2999-01-02T00:00:00.000Z",
+            "gracePeriodExpiresAt": null,
+            "overDeviceLimit": false,
+            "expirationIntent": null,
+            "__typename": "AppStoreSubscription",
+            "user": null,
+            "status": "canceled",
+            "originalPurchaseDate": "2021-01-01T00:00:00.000Z"
+          },
+        "__typename": "SubscriptionResult"
+        }
+    };
+    let body = JSON.stringify(obj);
+    $done({body})
+},script-update-interval=0
