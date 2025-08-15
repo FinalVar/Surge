@@ -3,7 +3,7 @@
 #!desc=解锁至2999年
 
 [Script]
-notability = type=http-response, pattern=^https?:\/\/notability\.com\/(global|subscriptions), script-path=https://raw.githubusercontent.com/FinalVar/Surge/main/notability.js, requires-body=true, max-size=-1, timeout=6
+notability = type=http-response, pattern=^https?:\/\/notability\.com\/(global|subscriptions), script-path=https://raw.githubusercontent.com/FinalVar/Surge/refs/heads/main/notability.js?token=GHSAT0AAAAAADJIPNLFR7HFODFHNVID5VFA2E7AFDQ, requires-body=true, max-size=-1, timeout=6
 
 [MITM]
 hostname = %APPEND% notability.com
